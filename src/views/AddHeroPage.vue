@@ -26,10 +26,16 @@
         <label for="phrase">Enter hero's catch phrase</label>
         <input type="text" name="phrase" id="phrase" v-model="phrase" />
       </li>
-      <!-- <li class="input-image">
-        <label for="hero-image">Upload hero's image</label>
-        <input type="file" name="hero-image" id="hero-image" multiple />
-      </li> -->
+      <li class="input-image">
+        <v-btn elevation="2">Upload photo</v-btn>
+        <input
+          type="file"
+          name="hero-image"
+          id="hero-image"
+          @click="onPickFile"
+          multiple
+        />
+      </li>
     </ul>
     <button class="edit-button">Create Hero!</button>
   </form>
@@ -50,11 +56,19 @@ export default {
   },
   methods: {
     async createHero() {
-      console.log("Creating Hero");
-      const addedHero = await addDoc(heroesCollection, this.$data);
-      alert("Congratulations!Hero created :)");
-      console.log(addedHero);
-      this.$router.push("/");
+      if (this.nickname.length <= 2 || this.nickname.length >= 30) {
+        alert("Please, enter valid nickname");
+      } else if (this.realname.length <= 2 || this.realname.length >= 30) {
+        alert("Please, enter valid real name");
+      } else if (this.description.length <= 10) {
+        alert("Description must have at least 10 symbols");
+      } else if (this.superpowers.length <= 10) {
+        alert("Superpowers must have at least 10 symbols");
+      } else {
+        await addDoc(heroesCollection, this.$data);
+        alert("Congratulations!Hero has been created :)");
+        this.$router.push("/");
+      }
     },
   },
 };

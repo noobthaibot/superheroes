@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+a {
+  color: #000000;
+  text-decoration: none;
+}
 h3,
 h4 {
   margin: 0;
@@ -89,8 +93,7 @@ ul {
 }
 
 .edit-button:hover {
-  color: #fff;
-  background-color: #1a1a1a;
+  background-color: #ffffff96;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }

@@ -13,7 +13,7 @@ const routes = [
     component: () => import("../views/AddHeroPage.vue"),
   },
   {
-    path: "/edit-hero",
+    path: "/heroes/:heroId",
     name: "edit-hero",
     component: () => import("../views/EditHeroPage.vue"),
   },
