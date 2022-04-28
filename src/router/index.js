@@ -17,6 +17,11 @@ const routes = [
     name: "edit-hero",
     component: () => import("../views/EditHeroPage.vue"),
   },
+  {
+    path: "/hero/:heroId",
+    name: "hero-page",
+    component: () => import("../views/HeroPage.vue"),
+  },
 ];
 
 const router = createRouter({

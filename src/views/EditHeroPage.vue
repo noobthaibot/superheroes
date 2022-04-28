@@ -64,7 +64,7 @@ export default {
         realname: null,
         description: null,
         superpowers: null,
-        ßphrase: null,
+        phrase: null,
       },
     };
   },
@@ -109,18 +109,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.edit-form {
-  display: flex;
-  flex-direction: column;
-}
-.edit-form li {
-  display: flex;
-  padding: 10px;
-  flex-direction: column-reverse;
-}
-.edit-button {
-  margin-left: 10px;
-}
-</style>

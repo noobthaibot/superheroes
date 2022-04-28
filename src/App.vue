@@ -186,5 +186,8 @@ ul {
   .buttons li button {
     margin: 7px;
   }
+  .nav-list {
+    flex-direction: column;
+  }
 }
 </style>

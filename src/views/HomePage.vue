@@ -6,7 +6,7 @@
         <router-link to="/add-hero">Add hero</router-link>
       </div>
       <div class="hero-item" v-for="hero in heroes" :key="hero.id">
-        <router-link :to="`{/heroes/${hero.id}`">{{
+        <router-link :to="{ path: `/hero/${hero.id}` }">{{
           hero.nickname
         }}</router-link>
         <button class="edit-button">
