@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="updateHero">
-    <ul>
+    <ul class="edit-form">
       <li class="input-nickname">
         <label for="name">Enter hero's nickname</label>
         <input type="text" name="name" id="name" v-model="heroInfo.nickname" />
@@ -109,3 +109,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+.edit-form li {
+  display: flex;
+  padding: 10px;
+  flex-direction: column-reverse;
+}
+.edit-button {
+  margin-left: 10px;
+}
+</style>

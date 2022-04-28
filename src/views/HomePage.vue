@@ -1,15 +1,21 @@
 <template>
   <div class="heroes-page">
-    <div v-if="!heroes.length">
-      <h4>Lets create a Hero!</h4>
-      <router-link to="/add-hero">Add hero</router-link>
-    </div>
-    <div v-for="hero in heroes" :key="hero.id">
-      {{ hero.nickname }}
-      <button class="edit-button">
-        <router-link :to="{ path: `/heroes/${hero.id}` }">Edit</router-link>
-      </button>
-      <button class="delete-button" @click="deleteHero(hero.id)">Delete</button>
+    <div class="heroes-container">
+      <div v-if="!heroes.length">
+        <h4>Lets create a Hero!</h4>
+        <router-link to="/add-hero">Add hero</router-link>
+      </div>
+      <div class="hero-item" v-for="hero in heroes" :key="hero.id">
+        <router-link :to="`{/heroes/${hero.id}`">{{
+          hero.nickname
+        }}</router-link>
+        <button class="edit-button">
+          <router-link :to="{ path: `/heroes/${hero.id}` }">Edit</router-link>
+        </button>
+        <button class="delete-button" @click="deleteHero(hero.id)">
+          Delete
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +49,7 @@ export default {
       alert("Hero deleted successfuly!");
       this.$router.go();
     },
+    pageChangeHandler() {},
   },
   created() {
     this.fetchHeroes();
@@ -50,8 +57,21 @@ export default {
 };
 </script>
 <style scoped>
-.heroes-page {
+.heroes-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.hero-item {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+.hero-item button {
+  margin: 10px;
 }
 </style>

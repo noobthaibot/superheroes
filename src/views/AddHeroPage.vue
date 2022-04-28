@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="createHero">
-    <ul>
+    <ul class="edit-form">
       <li class="input-nickname">
         <label for="name">Enter hero's nickname</label>
         <input type="text" name="name" id="name" v-model="nickname" />
@@ -27,13 +27,14 @@
         <input type="text" name="phrase" id="phrase" v-model="phrase" />
       </li>
       <li class="input-image">
-        <v-btn elevation="2">Upload photo</v-btn>
+        <label for="hero-image">Upload hero's image</label>
         <input
           type="file"
           name="hero-image"
           id="hero-image"
-          @click="onPickFile"
+          @change="uploadImage"
           multiple
+          accept="image/*"
         />
       </li>
     </ul>
@@ -44,6 +45,7 @@
 <script>
 import heroesCollection from "../firebase";
 import { addDoc } from "firebase/firestore";
+
 export default {
   data() {
     return {
@@ -52,6 +54,7 @@ export default {
       description: null,
       superpowers: null,
       phrase: null,
+      image: null,
     };
   },
   methods: {
@@ -65,10 +68,29 @@ export default {
       } else if (this.superpowers.length <= 10) {
         alert("Superpowers must have at least 10 symbols");
       } else {
-        await addDoc(heroesCollection, this.$data);
+        console.log("Creating Hero");
+        const addedHero = await addDoc(heroesCollection, this.$data);
         alert("Congratulations!Hero has been created :)");
+        console.log(addedHero);
         this.$router.push("/");
       }
+    },
+    uploadImage(event) {
+      // let file = event.target.files[0];
+      // let storageRef = app.storage().file("images" + file.name);
+      // storageRef.put(file);
+      // console.log(file);
+      const files = event.traget.files[0];
+      let filename = files.name;
+      if (filename.lastIndexOf(".") <= 0) {
+        return alert("Please add a valid photo!");
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
     },
   },
 };

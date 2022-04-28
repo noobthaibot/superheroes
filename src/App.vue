@@ -30,9 +30,21 @@ ul {
 }
 .nav-list {
   margin: 0 auto;
-  width: 300px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 200px;
+}
+.nav-list a {
+  width: 200px;
+  padding: 20px;
+  flex-shrink: 0;
+}
+.nav-list a:hover,
+.hero-item a:hover {
+  color: #3f85ca;
 }
 .hero-img {
   display: flex;
@@ -137,6 +149,24 @@ ul {
 .delete-button:active {
   box-shadow: none;
   transform: translateY(0);
+}
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+.edit-form li {
+  display: flex;
+  padding: 10px;
+  flex-direction: column-reverse;
+}
+.edit-button {
+  margin-left: 10px;
+}
+.page-item {
+  cursor: pointer;
+}
+.pagination li {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 840px) {
