@@ -168,6 +168,20 @@ ul {
 .pagination li {
   cursor: pointer;
 }
+.input-description input,
+.input-superpower input {
+  height: 50px;
+  text-align: start;
+}
+input {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+input[type="text"] {
+  padding: 5px;
+  background: #b5cce418;
+}
 
 @media screen and (max-width: 840px) {
   .hero-img {

@@ -9,30 +9,49 @@
         <router-link :to="{ path: `/hero/${hero.id}` }">{{
           hero.nickname
         }}</router-link>
-        <button class="edit-button">
-          <router-link :to="{ path: `/heroes/${hero.id}` }">Edit</router-link>
-        </button>
+        <router-link :to="{ path: `/heroes/${hero.id}` }"
+          ><button class="edit-button">Edit</button></router-link
+        >
         <button class="delete-button" @click="deleteHero(hero.id)">
           Delete
         </button>
       </div>
     </div>
+    <VueTailwindPagination
+      :current="currentPage"
+      :total="total"
+      :per-page="perPage"
+      @page-changed="pageChange($event)"
+    />
   </div>
 </template>
 
 <script>
 import heroesCollection from "../firebase";
 import { getDocs, doc, deleteDoc } from "firebase/firestore";
+import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
+import "@ocrv/vue-tailwind-pagination/styles";
+
 export default {
   name: "HomePage",
-  components: {},
+  components: {
+    VueTailwindPagination,
+  },
   data() {
     return {
       heroes: [],
       selectedDoc: null,
+      currentPage: 1,
+      total: null,
+      perPage: 5,
+      data: [],
     };
   },
   methods: {
+    pageChange(pageNumber) {
+      this.currentPage = pageNumber;
+      this.heroes;
+    },
     async fetchHeroes() {
       let heroesSnap = await getDocs(heroesCollection);
       let heroes = [];
@@ -42,6 +61,8 @@ export default {
         heroes.push(heroId);
       });
       this.heroes = heroes;
+      this.data = heroes;
+      this.total = heroes.length;
     },
     async deleteHero(heroId) {
       let heroRef = doc(heroesCollection, heroId);
@@ -49,10 +70,13 @@ export default {
       alert("Hero deleted successfuly!");
       this.$router.go();
     },
-    pageChangeHandler() {},
   },
   created() {
     this.fetchHeroes();
+  },
+  mounted() {
+    this.currentPage = 1;
+    this.heroes;
   },
 };
 </script>
