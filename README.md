@@ -1,11 +1,13 @@
 # superheroes
+## Project link
 
+https://superheroes-a276e.web.app/
 ## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Project run
 ```
 npm run serve
 ```
